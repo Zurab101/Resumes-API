@@ -13,12 +13,12 @@ app.use(cors({
 }));
 
 // Postman Mock Server URL (Replace with your actual mock server URL)
-const POSTMAN_MOCK_SERVER_URL = "https://a2635451-d1b3-47f3-98a9-4c7dcddf7d68.mock.pstmn.io";
+const POSTMAN_MOCK_SERVER_URL = "https://a2635451-d1b3-47f3-98a9-4c7dcddf7d68.mock.pstmn.io/resume";
 
 app.get('/resume', async (req, res) => {
     try {
         // Fetch mock data from Postman Mock Server
-        const response = await axios.get(https://a2635451-d1b3-47f3-98a9-4c7dcddf7d68.mock.pstmn.io);
+        const response = await axios.get(https://a2635451-d1b3-47f3-98a9-4c7dcddf7d68.mock.pstmn.io/resume);
         const resumes = response.data;
 
         const { name } = req.query;
