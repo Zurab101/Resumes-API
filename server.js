@@ -14,7 +14,7 @@ const POSTMAN_MOCK_SERVER_URL = "https://your-postman-mock-server.com/resumes";
 app.get('/resume', async (req, res) => {
     try {
         // Fetch mock data from Postman Mock Server
-        const response = await axios.get(POSTMAN_MOCK_SERVER_URL);
+        const response = await axios.get(https://a2635451-d1b3-47f3-98a9-4c7dcddf7d68.mock.pstmn.io);
         const resumes = response.data;
 
         const { name } = req.query;
