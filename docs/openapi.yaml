@@ -5,7 +5,7 @@ info:
   version: 1.0.0
 
 servers:
-  - url: "https://190d8639-8b98-4893-b060-0ddd56c67a0e.mock.pstmn.io/resume"
+  - url: "https://190d8639-8b98-4893-b060-0ddd56c67a0e.mock.pstmn.io"
     description: Mock API Server
 
 paths:
