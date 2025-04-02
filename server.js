@@ -6,7 +6,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Enable CORS for Swagger UI
-app.use(cors());
+app.use(cors({
+    origin: "https://zurab101.github.io/Resumes-API/", // Replace with your actual URL
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Content-Type,Authorization"
+}));
 
 // Postman Mock Server URL (Replace with your actual mock server URL)
 const POSTMAN_MOCK_SERVER_URL = "https://a2635451-d1b3-47f3-98a9-4c7dcddf7d68.mock.pstmn.io";
