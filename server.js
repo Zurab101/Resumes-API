@@ -1,48 +1,32 @@
 const express = require('express');
-const cors = require('cors');
-const axios = require('axios'); // Import axios for API calls
+const axios = require('axios');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Enable CORS for Swagger UI
-app.use(cors({
-    origin: "https://zurab101.github.io/Resumes-API/", // Replace with your actual URL
-    methods: "GET,POST,PUT,DELETE",
-    allowedHeaders: "Content-Type,Authorization"
-}));
-
-// Postman Mock Server URL (Replace with your actual mock server URL)
-const POSTMAN_MOCK_SERVER_URL = "https://190d8639-8b98-4893-b060-0ddd56c67a0e.mock.pstmn.io";
+// Postman Mock Server URL
+const MOCK_SERVER_URL = "https://190d8639-8b98-4893-b060-0ddd56c67a0e.mock.pstmn.io/resume";
 
 app.get('/resume', async (req, res) => {
     try {
-        // Fetch mock data from Postman Mock Server
-        const response = await axios.get(https://190d8639-8b98-4893-b060-0ddd56c67a0e.mock.pstmn.io);
-        const resumes = response.data;
+        const response = await axios.get(MOCK_SERVER_URL);
+        const allResumes = response.data; // Get resumes from mock server
 
         const { name } = req.query;
-
         if (name) {
-            const filteredResume = resumes.filter(resume => resume.name.toLowerCase() === name.toLowerCase());
-
-            if (filteredResume.length === 0) {
-                return res.status(404).json({ error: "Resume not found for the given name" });
+            const filteredResume = allResumes.find(resume => resume.name.toLowerCase() === name.toLowerCase());
+            if (!filteredResume) {
+                return res.status(404).json({ error: "Resume not found" });
             }
-
             return res.json(filteredResume);
         }
 
-        // Return all resumes if no query parameter is provided
-        res.json(resumes);
-
+        res.json(allResumes); // Return all resumes if no filter is applied
     } catch (error) {
-        console.error("Error fetching mock data:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: "Server error", details: error.message });
     }
 });
 
-// Start the server
 app.listen(PORT, () => {
     console.log(`✅ Server is running on http://localhost:${PORT}`);
 });
