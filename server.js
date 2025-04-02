@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 
 // Postman Mock Server URL (Replace with your actual mock server URL)
-const POSTMAN_MOCK_SERVER_URL = "https://your-postman-mock-server.com/resumes";
+const POSTMAN_MOCK_SERVER_URL = "https://a2635451-d1b3-47f3-98a9-4c7dcddf7d68.mock.pstmn.io";
 
 app.get('/resume', async (req, res) => {
     try {
