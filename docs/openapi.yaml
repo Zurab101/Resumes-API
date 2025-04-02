@@ -1,0 +1,51 @@
+openapi: 3.0.0
+info:
+  title: Resume API
+  description: API for recruiters to get resume details
+  version: 1.0.0
+
+servers:
+  - url: "http://localhost:3000"
+    description: Local API Server
+
+paths:
+  /resume:
+    get:
+      summary: Get resumes (optionally filter by name)
+      parameters:
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter resumes by name
+      responses:
+        '200':
+          description: List of resumes or a filtered resume
+          content:
+            application/json:
+              examples:
+                allResumes:
+                  summary: "List of resumes"
+                  value:
+                    - id: 1
+                      name: "John Doe"
+                      skills: ["JavaScript", "Node.js"]
+                    - id: 2
+                      name: "Jane Smith"
+                      skills: ["Python", "Django"]
+                    - id: 3
+                      name: "Alice Johnson"
+                      skills: ["Java", "Spring"]
+                filteredResume:
+                  summary: "Filtered resume result"
+                  value:
+                    - id: 2
+                      name: "Jane Smith"
+                      skills: ["Python", "Django"]
+        '404':
+          description: Resume not found
+          content:
+            application/json:
+              example:
+                error: "Resume not found for the given name"
