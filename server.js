@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
+const axios = require('axios'); // Import axios for API calls
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -8,29 +8,34 @@ const PORT = process.env.PORT || 3000;
 // Enable CORS for Swagger UI
 app.use(cors());
 
-// Mock Resume Data
-const resumes = [
-    { id: 1, name: "John Doe", skills: ["JavaScript", "Node.js"] },
-    { id: 2, name: "Jane Smith", skills: ["Python", "Django"] },
-    { id: 3, name: "Alice Johnson", skills: ["Java", "Spring"] }
-];
+// Postman Mock Server URL (Replace with your actual mock server URL)
+const POSTMAN_MOCK_SERVER_URL = "https://your-postman-mock-server.com/resumes";
 
-// API Endpoint: Get Resumes (Filter by Name)
-app.get('/resume', (req, res) => {
-    const { name } = req.query;
+app.get('/resume', async (req, res) => {
+    try {
+        // Fetch mock data from Postman Mock Server
+        const response = await axios.get(POSTMAN_MOCK_SERVER_URL);
+        const resumes = response.data;
 
-    if (name) {
-        const filteredResume = resumes.filter(resume => resume.name.toLowerCase() === name.toLowerCase());
+        const { name } = req.query;
 
-        if (filteredResume.length === 0) {
-            return res.status(404).json({ error: "Resume not found for the given name" });
+        if (name) {
+            const filteredResume = resumes.filter(resume => resume.name.toLowerCase() === name.toLowerCase());
+
+            if (filteredResume.length === 0) {
+                return res.status(404).json({ error: "Resume not found for the given name" });
+            }
+
+            return res.json(filteredResume);
         }
 
-        return res.json(filteredResume);
-    }
+        // Return all resumes if no query parameter is provided
+        res.json(resumes);
 
-    // Return all resumes if no query parameter is provided
-    res.json(resumes);
+    } catch (error) {
+        console.error("Error fetching mock data:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 });
 
 // Start the server
