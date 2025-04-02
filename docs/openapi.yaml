@@ -5,8 +5,8 @@ info:
   version: 1.0.0
 
 servers:
-  - url: "http://localhost:3000"
-    description: Local API Server
+  - url: "https://a2635451-d1b3-47f3-98a9-4c7dcddf7d68.mock.pstmn.io"
+    description: Mock API Server
 
 paths:
   /resume:
