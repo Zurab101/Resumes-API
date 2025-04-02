@@ -5,11 +5,11 @@ info:
   version: 1.0.0
 
 servers:
-  - url: "http://localhost:3000"
-    description: Local API Server
+  - url: https://mockserver.example.com/v1
+    description: Mock Server
 
 paths:
-  /resume:
+  /resumes:
     get:
       summary: Get resumes (optionally filter by name)
       parameters:
@@ -21,31 +21,25 @@ paths:
           description: Filter resumes by name
       responses:
         '200':
-          description: List of resumes or a filtered resume
+          description: List of resumes or a single resume if filtered by name
           content:
             application/json:
-              examples:
-                allResumes:
-                  summary: "List of resumes"
-                  value:
-                    - id: 1
-                      name: "John Doe"
-                      skills: ["JavaScript", "Node.js"]
-                    - id: 2
-                      name: "Jane Smith"
-                      skills: ["Python", "Django"]
-                    - id: 3
-                      name: "Alice Johnson"
-                      skills: ["Java", "Spring"]
-                filteredResume:
-                  summary: "Filtered resume result"
-                  value:
-                    - id: 2
-                      name: "Jane Smith"
-                      skills: ["Python", "Django"]
+              example:
+                - id: 1
+                  name: "John Doe"
+                  skills: ["JavaScript", "Node.js"]
+                - id: 2
+                  name: "Jane Smith"
+                  skills: ["Python", "Django"]
         '404':
           description: Resume not found
           content:
             application/json:
               example:
                 error: "Resume not found for the given name"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              example:
+                error: "Internal server error"
