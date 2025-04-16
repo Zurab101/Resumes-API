@@ -1,51 +1,180 @@
-openapi: 3.0.0
+
+openapi: 3.0.3
 info:
   title: Resume API
-  description: API for recruiters to get resume details
   version: 1.0.0
+  description: API to retrieve structured resume data for Zura Babuadze.
 
 servers:
-  - url: "https://mockserver.example.com/v1"
-    description: Mock API Server
+  - url: https://mock.api/resume
 
 paths:
-  /resume:
+  /resumes:
     get:
-      summary: Get resumes (optionally filter by name)
-      parameters:
-        - name: name
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Filter resumes by name
+      summary: List available resumes
       responses:
         '200':
-          description: List of resumes or a filtered resume
+          description: List of resume identifiers
           content:
             application/json:
               examples:
-                allResumes:
-                  summary: "List of resumes"
-                  value:
-                    - id: 1
-                      name: "John Doe"
-                      skills: ["JavaScript", "Node.js"]
-                    - id: 2
-                      name: "Jane Smith"
-                      skills: ["Python", "Django"]
-                    - id: 3
-                      name: "Alice Johnson"
-                      skills: ["Java", "Spring"]
-                filteredResume:
-                  summary: "Filtered resume result"
-                  value:
-                    - id: 2
-                      name: "Jane Smith"
-                      skills: ["Python", "Django"]
-        '404':
-          description: Resume not found
+                defaultExample:
+                  value: ["zura-babuadze"]
+
+  /resume/{name}/contactInfo:
+    get:
+      summary: Get contact info and professional summary
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+            default: zura-babuadze
+      responses:
+        '200':
+          description: Contact Info and Summary
           content:
             application/json:
-              example:
-                error: "Resume not found for the given name"
+              examples:
+                defaultExample:
+                  value:
+                    name: Zura Babuadze
+                    title: Advanced Solution Architect
+                    address: Avto Varazi St. 101, Tbilisi, Georgia
+                    phone: (+995) 593 409 673
+                    email: zurababuadze@yahoo.com
+                    linkedin: linkedin.com/in/zura-babuadze-12962b98
+                    summary: >
+                      Advanced Solution Architect with extensive experience in system analysis, technical business analysis,
+                      and agile frameworks across the financial services industry...
+
+  /resume/{name}/competencies:
+    get:
+      summary: Get list of core competencies
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+            default: zura-babuadze
+      responses:
+        '200':
+          description: Core Competencies
+          content:
+            application/json:
+              examples:
+                defaultExample:
+                  value:
+                    - Solution Architecture & Technical Documentation
+                    - Agile Methodologies (Scrum, Kanban)
+                    - Stakeholder & Team Management
+                    - System Integration & Process Improvement
+                    - Cloud Services (AWS Certified)
+                    - Technical Analysis & API Development
+
+  /resume/{name}/workExperience:
+    get:
+      summary: Get work experience
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+            default: zura-babuadze
+      responses:
+        '200':
+          description: Work Experience
+          content:
+            application/json:
+              examples:
+                defaultExample:
+                  value:
+                    - role: Solution Architect
+                      company: Bank of Georgia
+                      location: Tbilisi, Georgia
+                      duration: May 2024 – Present
+                      responsibilities:
+                        - Led architectural solutions for the Transactions Tribe (Billing).
+                        - Facilitated meetings with stakeholders to define project requirements and solutions.
+                    - role: System Analyst
+                      company: Re|Bank
+                      location: Tbilisi, Georgia
+                      duration: June 2023 – May 2024
+                      responsibilities:
+                        - Enhanced digital channels and applications to improve customer experience.
+                        - Provided architectural guidance and supported agile methodologies.
+
+  /resume/{name}/education:
+    get:
+      summary: Get education history
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+            default: zura-babuadze
+      responses:
+        '200':
+          description: Education Information
+          content:
+            application/json:
+              examples:
+                defaultExample:
+                  value:
+                    - degree: MBA in Business Administration and Management
+                      institution: Tbilisi State University
+                      location: Tbilisi, Georgia
+                      duration: Sep 2014 – Jul 2016
+                    - degree: BBA in Marketing
+                      institution: Tbilisi State University
+                      location: Tbilisi, Georgia
+                      duration: Sep 2010 – Jul 2014
+
+  /resume/{name}/Skills:
+    get:
+      summary: Get technical skills and languages
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+            default: zura-babuadze
+      responses:
+        '200':
+          description: Skills and Languages
+          content:
+            application/json:
+              examples:
+                defaultExample:
+                  value:
+                    technicalSkills:
+                      - Jira
+                      - Confluence
+                      - Slack
+                      - Miro
+                      - MS Teams
+                      - Postman
+                      - Swagger UI
+                      - Soap UI
+                      - Charles Proxy
+                      - AWS (Certified)
+                      - RabbitMQ
+                      - Kong Gateway
+                      - Elastic Stack
+                      - SQL
+                      - Data Warehouse
+                      - ETL
+                      - Autodesk 3DS MAX
+                      - Adobe CC
+                      - SOA
+                      - Microservices
+                      - API Development
+                      - C4 Diagramming
+                    languages:
+                      - Georgian: Native
+                      - English: Advanced
