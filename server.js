@@ -5,7 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Postman Mock Server URL
-const MOCK_SERVER_URL = "https://190d8639-8b98-4893-b060-0ddd56c67a0e.mock.pstmn.io/resume";
+const MOCK_SERVER_URL = "https://mock.api/resume";
 
 app.get('/resume', async (req, res) => {
     try {
