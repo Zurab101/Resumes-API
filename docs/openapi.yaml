@@ -6,10 +6,10 @@ info:
   description: API to retrieve structured resume data for Zura Babuadze.
 
 servers:
-  - url: https://mock.api/resume
+  - url: https://5d787371-cf5b-4529-bedd-ad0c7c4265ff.mock.pstmn.io
 
 paths:
-  /resumes:
+  /resumeOwner:
     get:
       summary: List available resumes
       responses:
@@ -44,11 +44,16 @@ paths:
                     address: Avto Varazi St. 101, Tbilisi, Georgia
                     phone: (+995) 593 409 673
                     email: zurababuadze@yahoo.com
-                    linkedin: linkedin.com/in/zura-babuadze-12962b98
+                    Remote: Open to Remote Opportunities
+                    time zone: From UTC to UTC+5
+                    linkedin: https://www.linkedin.com/in/zura-babuadze-12962b98/
                     summary: >
-                      Advanced Solution Architect with extensive experience in system analysis, technical business analysis,
-                      and agile frameworks across the financial services industry...
-
+                      Advanced Solution Architect with extensive experience in system analysis, 
+                      technical business analysis, and agile frameworks across the financial services industry. 
+                      Proven track record in designing and implementing technical solutions to enhance business processes and improve customer experience. 
+                      Strong expertise in cloud architecture, system integration, and stakeholder management, 
+                      with a commitment to driving systems improvements and promoting agile methodologies within cross-functional teams.
+  
   /resume/{name}/competencies:
     get:
       summary: Get list of core competencies
@@ -68,11 +73,13 @@ paths:
                 defaultExample:
                   value:
                     - Solution Architecture & Technical Documentation
+                    - Diagrams (UML; BPMN; C4)
                     - Agile Methodologies (Scrum, Kanban)
                     - Stakeholder & Team Management
                     - System Integration & Process Improvement
                     - Cloud Services (AWS Certified)
                     - Technical Analysis & API Development
+                    - Enterprise Architecture (TOGAF Certified)
 
   /resume/{name}/workExperience:
     get:
@@ -94,18 +101,72 @@ paths:
                   value:
                     - role: Solution Architect
                       company: Bank of Georgia
-                      location: Tbilisi, Georgia
+                      location: Tbilisi, Georgia, Hybrid
                       duration: May 2024 – Present
                       responsibilities:
                         - Led architectural solutions for the Transactions Tribe (Billing).
                         - Facilitated meetings with stakeholders to define project requirements and solutions.
+                        - Produced technical documentation and diagrams to support system architecture.
+                        - Advised on the adoption of new technologies and oversaw their implementation.
+                        - Drove initiatives for system improvement, optimizing efficiency.
+                        - Collaborated within a Kanban framework to ensure timely project delivery.
+                      main technology: Java; Spring boot; AWS; Kafka; Oracle; PostgreSQL; MongoDB;
+                      key project:
+                        - Centralized error system
+                        - Credit card module reintegration
+                        - Logs optimization – reduced in size by 60%
+                        - Repayment system for failed payment
                     - role: System Analyst
                       company: Re|Bank
-                      location: Tbilisi, Georgia
+                      location: Tbilisi, Georgia, Hybrid
                       duration: June 2023 – May 2024
                       responsibilities:
                         - Enhanced digital channels and applications to improve customer experience.
                         - Provided architectural guidance and supported agile methodologies.
+                        - Facilitated stakeholder meetings to elicit and document requirements.
+                        - Recommended improvements for application performance.
+                        - Worked across all phases of the SDLC with the development team.
+                        - Led onboarding and knowledge-sharing sessions for new team members.
+                      main technology: .Net; MSSQL; Rabbit MQ; Kotlin; Swift; React; Rest;
+                      key project:
+                        - App review and architectural recommendation.
+                          To find anti-patterns, functional, architectural and security faults 
+                          and generate recommendations to solving this issue
+                    - role: Technical Business Analyst (TCJE)
+                      company: TBC Bank
+                      location: Tbilisi, Georgia, Remote
+                      duration: February 2021 – May 2023
+                      responsibilities:
+                        - Enhanced digital channels and applications to improve customer experience.
+                        - Provided architectural guidance and supported agile methodologies.
+                        - Facilitated stakeholder meetings to elicit and document requirements.
+                        - Recommended improvements for application performance.
+                        - Worked across all phases of the SDLC with the development team.
+                        - Led onboarding and knowledge-sharing sessions for new team members.
+                      main technology: .Net; Rest; Rabbit MQ; Kotlin; Swift; React; AWS; Oracle; MSSQL;
+                      key project:
+                        - PFM (Personal Financial Manager)
+                        - Transfers and transaction inhouse
+                    - role: Business Analyst
+                      company: Assecco Georgia
+                      location: Tbilisi, Georgia, Remote
+                      duration: May 2019 – January 2021
+                      responsibilities:
+                        - Conducted interviews with key business users to collect information on business processes and user requirements.
+                        - Collaborated on all stages of SDLC.
+                        - Shape mockups and wireframes.
+                        - Working with big data and ETL.
+                      key project:
+                        - DWH (Data Warehouse) for Toyota Caucasus (TCA)
+                        - Transfers and transaction inhouse
+                    - role: ERP Specialist
+                      company: BDO Solutions
+                      location: Tbilisi, Georgia
+                      duration: May 2016 – January 2019
+                      responsibilities:
+                        - Coordinated with project management staff on database development timelines and project scope.
+                        - Tested programs and databases to identify issues and make necessary modifications.
+                        - Administered, supported and monitored ERP Systems.
 
   /resume/{name}/education:
     get:
@@ -129,6 +190,10 @@ paths:
                       institution: Tbilisi State University
                       location: Tbilisi, Georgia
                       duration: Sep 2014 – Jul 2016
+                    - degree: Computer Graphics and Animation - Professional certificate 
+                      college: EMIS ACADEMYComputer Graphics and Animation
+                      location: Tbilisi, Georgia
+                      duration: Sep 2015 – Dec 2016
                     - degree: BBA in Marketing
                       institution: Tbilisi State University
                       location: Tbilisi, Georgia
